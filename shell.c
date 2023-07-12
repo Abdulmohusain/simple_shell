@@ -15,7 +15,7 @@ int main(void)
 		argv = NULL;
 		str = NULL;
 		/* Print prompt */
-		printf("$$ ");
+		_puts("$$ ");
 		/* Wait for user to enter command */
 		get_command(&str, &n);
 		/* Create an array in the heap. It must be freed */

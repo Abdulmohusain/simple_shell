@@ -13,7 +13,7 @@ void get_command(char **lineptr, size_t *n)
 	{
 		/* freeing lineptr when getline fails */
 		free(*lineptr);
-		printf("Error or EOF\n");
+		_puts("Error or EOF\n");
 		exit(-1);
 	}
 }

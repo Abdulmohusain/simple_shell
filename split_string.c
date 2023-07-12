@@ -14,14 +14,14 @@ char **split_str(char *strng)
 	int len, i;
 
 	/* Make copy of string because it will be destroyed strtok */
-	strng_copy = strdup(strng);
+	strng_copy = _strdup(strng);
 
 	/* Tokenize strng */
 	token = strtok(strng, delim);
 	len = 1;
 	if (token == NULL)
 	{
-		printf("Error: Could not tokenize string");
+		_puts("Error: Could not tokenize string");
 		return (NULL);
 	}
 	/* Get the length of token */
@@ -36,13 +36,13 @@ char **split_str(char *strng)
 	token = strtok(strng_copy, delim);
 	if (token == NULL)
 	{
-		printf("Error: Could not tokenize string");
+		_puts("Error: Could not tokenize string");
 		return (NULL);
 	}
 	/** Loop to set value of each string in arr by copying token with strdup */
 	for (i = 0; token != NULL; i++)
 	{
-		arr[i] = strdup(token);
+		arr[i] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	free(strng_copy);
