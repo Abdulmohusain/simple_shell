@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+extern char **environ;
+
 void execute_command(char **argv, char *str);
 void get_command(char **lineptr, size_t *n);
 char **split_str(char *strng);
@@ -26,5 +28,6 @@ void print_num(int num);
 
 /* Shell Command Functions */
 void print_err(int count, char *cmd);
+char *_getenv(char *name);
 
 #endif

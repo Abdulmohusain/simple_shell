@@ -26,7 +26,7 @@ These include the main functions used in the simple shell, the first function in
 | Function | use |
 | -------- | --- |
 | print_err | prints error message in shell for invalid commands |
-
+| _getenv | searches for an environment variable |
 Files\n
 shell.c => main function
 shell.h => Header file
