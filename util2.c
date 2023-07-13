@@ -89,3 +89,23 @@ void print_num(int num)
 		print_num(num / 10);
 	_putchar(num % 10 + '0');
 }
+
+/**
+ * print_err - print error message in shell
+ * @count: cout of execution
+ * @cmd: command entered
+ *
+ * Return: void
+ */
+
+void print_err(int count, char *cmd)
+{
+	_puts("hsh");
+	_puts(": ");
+	print_num(count);
+	_puts(": ");
+	_puts(cmd);
+	_puts(": ");
+	_puts("not found");
+	_putchar('\n');
+}

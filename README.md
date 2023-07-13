@@ -21,6 +21,12 @@ Very little standard functions where used in this project, we used custom functi
 | print_num | prints an integer |
 
 ### Main Functions
+
+These include the main functions used in the simple shell, the first function in the table below is located in `util2.c` file
+| Function | use |
+| -------- | --- |
+| print_err | prints error message in shell for invalid commands |
+
 Files\n
 shell.c => main function
 shell.h => Header file

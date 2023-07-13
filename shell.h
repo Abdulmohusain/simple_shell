@@ -24,4 +24,7 @@ int _strcmp(const char *s1, const char *s2);
 int _atoi(const char *nstr);
 void print_num(int num);
 
+/* Shell Command Functions */
+void print_err(int count, char *cmd);
+
 #endif

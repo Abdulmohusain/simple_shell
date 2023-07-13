@@ -6,12 +6,13 @@
 int main(void)
 {
 	char **argv, *str;
-	int status;
+	int status, count = 0;
 	size_t n = 0;
 	pid_t child_pid;
 	/* Infinate loop */
 	while (1)
 	{
+		count++;
 		argv = NULL;
 		str = NULL;
 		/* Print prompt */

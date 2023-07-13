@@ -25,8 +25,12 @@ void get_command(char **lineptr, size_t *n)
  */
 void execute_command(char **argv, char *str)
 {
+	int count = 0;
+
+	count++;
 	if (execve(argv[0], argv, NULL) == -1)
 	{
+		print_err(count, argv[0]);
 		free_list_str(argv);
 		free(str);
 		perror("Error:");
