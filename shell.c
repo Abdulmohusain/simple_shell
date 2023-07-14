@@ -9,19 +9,24 @@ int main(void)
 	int status, count = 0;
 	size_t n = 0;
 	pid_t child_pid;
-	/* Infinate loop */
+
 	while (1)
 	{
 		count++;
 		argv = NULL;
 		str = NULL;
-		/* Print prompt */
-		_puts("$$ ");
-		/* Wait for user to enter command */
+		_puts("$ ");
 		get_command(&str, &n);
 		/* Create an array in the heap. It must be freed */
 		argv = split_str(str);
-		/* Create a child process and handle error when it fails */
+		if (_strcmp(argv[0], "exit") == 0)
+			return (0);
+		argv[0] = build_path(argv[0]);
+		if (argv[0] == NULL)
+		{
+			perror("Error:");
+			continue;
+		}
 		child_pid = fork();
 		if (child_pid == -1)
 		{
