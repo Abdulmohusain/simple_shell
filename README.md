@@ -19,6 +19,7 @@ Very little standard functions where used in this project, we used custom functi
 | _strcmp | compares two strings |
 | _atoi | converts a string to an integer |
 | print_num | prints an integer |
+| split_str | splits a string and returns an array of each word of the string|
 
 ### Main Functions
 
@@ -27,10 +28,11 @@ These include the main functions used in the simple shell, the first function in
 | -------- | --- |
 | print_err | prints error message in shell for invalid commands |
 
-Files\n
-shell.c => main function
-shell.h => Header file
-split_string.c =>
+## Files
+| shell.c => main function
+| shell.h => Header file
+
+| split_string.c =>
     => split_str - A a function that splits a string and returns an array of each word of the string.
     => free_list_str -  A function that frees a 2d array of strings created by malloc.
     
