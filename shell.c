@@ -19,7 +19,6 @@ int main(void)
 		_puts("$$ ");
 		/* Wait for user to enter command */
 		get_command(&str, &n);
-		_getenv("PATH");
 		/* Create an array in the heap. It must be freed */
 		argv = split_str(str);
 		/* Create a child process and handle error when it fails */
