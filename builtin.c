@@ -24,7 +24,7 @@ char *_getenv(char *name)
 		}
 		if (j == len && environ[i][j] == '=')
 		{
-			val = environ[i] + len + 1;	
+			val = environ[i] + len + 1;
 			return (val);
 		}
 		i++;

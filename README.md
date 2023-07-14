@@ -28,6 +28,7 @@ These include the main functions used in the simple shell, the first function in
 | -------- | --- |
 | print_err | prints error message in shell for invalid commands |
 | _getenv | searches for an environment variable |
+| build_path | Builds full file path with command in simple_shell |
 
 ## Files
 | shell.c => main function

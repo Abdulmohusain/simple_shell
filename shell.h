@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 extern char **environ;
 
@@ -29,5 +31,6 @@ void print_num(int num);
 /* Shell Command Functions */
 void print_err(int count, char *cmd);
 char *_getenv(char *name);
+char *build_path(char *cmd);
 
 #endif
