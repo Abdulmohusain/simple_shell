@@ -21,12 +21,12 @@ int main(void)
 		argv = split_str(str);
 		if (_strcmp(argv[0], "exit") == 0)
 			return (0);
-		argv[0] = build_path(argv[0]);
+		/*argv[0] = build_path(argv[0]);
 		if (argv[0] == NULL)
 		{
 			perror("Error:");
 			continue;
-		}
+		}*/
 		child_pid = fork();
 		if (child_pid == -1)
 		{

@@ -9,9 +9,6 @@ void get_command(char **lineptr, size_t *n)
 	ssize_t lines;
 
 	lines = getline(lineptr, n, stdin);
-	if (lines == 1)
-		// Break iteration an print prompt
-		exit(0);
 	if (lines == -1)
 	{
 		/* freeing lineptr when getline fails */
