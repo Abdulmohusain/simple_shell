@@ -29,6 +29,11 @@ int main(int ac, char **argv)
 			_putchar('\n');
 			break;
 		}
+		if (_strcmp(lineptr, "\n") == 0)
+		{
+			_putchar('\n');
+			continue;
+		}
 		cmd_arr = split_str(lineptr);
 		if (check_builtin(lineptr, cmd_arr) == 0)
 		{
