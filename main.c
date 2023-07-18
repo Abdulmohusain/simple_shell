@@ -27,7 +27,8 @@ int main(int ac, char **argv)
 		if (line == -1)
 		{
 			free(lineptr);
-			_putchar('\n');
+			if (isatty(STDIN_FILENO))
+				_putchar('\n');
 			break;
 		}
 		if (_strcmp(lineptr, "\n") == 0)
