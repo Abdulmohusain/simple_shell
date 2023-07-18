@@ -33,6 +33,7 @@ void print_err(int count, char *cmd, char *arg);
 char *_getenv(char *name);
 char *build_path(char *cmd);
 int exec_cmd(char *cmd, char **argv);
+void sig_cntrl(int signal);
 
 /* Builtin command */
 int check_builtin(char *cmd, char **argv);

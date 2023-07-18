@@ -20,6 +20,7 @@ int main(int ac, char **argv)
 	while (1)
 	{
 		count++;
+		signal(SIGINT, sig_cntrl);
 		if (isatty(STDIN_FILENO))
 			_puts("$ ");
 		line = getline(&lineptr, &n, stdin);
@@ -31,7 +32,7 @@ int main(int ac, char **argv)
 		}
 		if (_strcmp(lineptr, "\n") == 0)
 		{
-			_putchar('\n');
+			/*_putchar('\n');*/
 			continue;
 		}
 		cmd_arr = split_str(lineptr);
@@ -89,4 +90,17 @@ int exec_cmd(char *cmd, char **argv)
 		wait(&status);
 	}
 	return (0);
+}
+
+/**
+ * sig_cntrl - performs an action in response to a signal
+ * @signal: signal recieved
+ *
+ * Return: void
+ */
+
+void sig_cntrl(int signal)
+{
+	if (signal == SIGINT)
+		_puts("\n$ ");
 }
