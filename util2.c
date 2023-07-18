@@ -94,6 +94,7 @@ void print_num(int num)
  * print_err - print error message in shell
  * @count: cout of execution
  * @cmd: command entered
+ * @arg: command line argument 0
  *
  * Return: void
  */
@@ -107,5 +108,4 @@ void print_err(int count, char *cmd, char *arg)
 	_puts(cmd);
 	_puts(": ");
 	_puts("not found");
-	_putchar('\n');
 }

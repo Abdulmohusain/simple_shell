@@ -21,14 +21,17 @@ Very little standard functions where used in this project, we used custom functi
 | print_num | prints an integer |
 | split_str | splits a string and returns an array of each word of the string|
 
-### Main Functions
+## Main Functions
 
-These include the main functions used in the simple shell, the first function in the table below is located in `util2.c` file
+These include the main functions used in the simple shell, the first function in the table below is located in `util2.c` file. The remaining functions can be found in the `main.c` and `biltin.c` files
 | Function | use |
 | -------- | --- |
 | print_err | prints error message in shell for invalid commands |
 | _getenv | searches for an environment variable |
 | build_path | Builds full file path with command in simple_shell |
+| exit_shell | Exit shell builtin function |
+| print_env | Print environment variable builtin function |
+| exec_cmd | execute executable command in shell |
 
 ## Files
 | shell.c => main function
