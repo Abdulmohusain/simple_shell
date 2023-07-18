@@ -57,11 +57,13 @@ char **split_str(char *strng)
 void free_list_str(char **list)
 {
 	int i = 0;
+	char **temp;
 
+	temp = list;
 	while (list[i])
 	{
 		free(list[i]);
 		i++;
 	}
-	free(list);
+	free(temp);
 }

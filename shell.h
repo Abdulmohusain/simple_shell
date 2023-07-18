@@ -12,8 +12,8 @@
 
 extern char **environ;
 
-void execute_command(char **argv, char *str);
-void get_command(char **lineptr, size_t *n);
+void execute_command(char **argv, char *str, char *cmd);
+int get_command(char **lineptr, size_t *n);
 char **split_str(char *strng);
 void free_list_str(char **list);
 
@@ -29,8 +29,26 @@ int _atoi(const char *nstr);
 void print_num(int num);
 
 /* Shell Command Functions */
-void print_err(int count, char *cmd);
+void print_err(int count, char *cmd, char *arg);
 char *_getenv(char *name);
 char *build_path(char *cmd);
+int exec_cmd(char *cmd, char **argv);
+
+/* Builtin command */
+int check_builtin(char *cmd, char **argv);
+int exit_shell(char *cmd, char **argv);
+int print_env(char *cmd, char **argv);
+
+/**
+ * struct built_in - builtin structure
+ * @name: name of function
+ * @f: the function to call
+ */
+
+typedef struct built_in
+{
+	char *name;
+	int (*f)(char *, char **);
+} builtin;
 
 #endif

@@ -98,9 +98,9 @@ void print_num(int num)
  * Return: void
  */
 
-void print_err(int count, char *cmd)
+void print_err(int count, char *cmd, char *arg)
 {
-	_puts("hsh");
+	_puts(arg);
 	_puts(": ");
 	print_num(count);
 	_puts(": ");

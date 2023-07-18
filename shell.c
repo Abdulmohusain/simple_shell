@@ -3,9 +3,10 @@
  * main - A Command Line interpreter.
  * Return: 0 on success, and -1 on failure.
  */
-int main(void)
+/*int main(void)
 {
 	char **argv, *str;
+	char *cmd;
 	int status, count = 0;
 	size_t n = 0;
 	pid_t child_pid;
@@ -15,34 +16,42 @@ int main(void)
 		count++;
 		argv = NULL;
 		str = NULL;
-		_puts("$ ");
-		get_command(&str, &n);
+		if (isatty(STDIN_FILENO))
+			_puts("$ ");
+		if (get_command(&str, &n) == -1)
+			break;*/
 		/* Create an array in the heap. It must be freed */
-		argv = split_str(str);
-		if (_strcmp(argv[0], "exit") == 0)
-			return (0);
-		/*argv[0] = build_path(argv[0]);
-		if (argv[0] == NULL)
+		/*argv = split_str(str);
+		if (check_builtin(str, argv) == 0)
 		{
-			perror("Error:");
-			continue;
-		}*/
-		child_pid = fork();
-		if (child_pid == -1)
-		{
-			perror("Error:");
-			return (1);
-		}
-		/* Child process will run */
-		if (child_pid == 0)
-			execute_command(argv, str);
-		/* Parent process will run */
-		else
-		{
-			free_list_str(argv);
-			free(str);
-			wait(&status);
+			cmd = build_path(argv[0]);
+			if (cmd == NULL)
+				print_err(count, argv[0]);
+			else
+			{
+				child_pid = fork();
+				if (child_pid == -1)
+				{
+					perror("Error:");
+					return (1);
+				}*/
+				/* Child Process will run */
+				/*if (child_pid == 0)
+				{
+					execute_command(argv, str, cmd);
+				}*/
+				/* Parent process will run */
+				/*else
+				{*/
+					/*free_list_str(argv);
+					free(str);*/
+					/*wait(&status);
+				}
+			}
+			if (cmd != argv[0])
+				free(cmd);
 		}
 	}
+	free_list_str(argv);
 	return (0);
-}
+}*/
