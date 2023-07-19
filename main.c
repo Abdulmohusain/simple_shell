@@ -38,10 +38,7 @@ int main(int ac, char **argv)
 		{
 			cmd = build_path(cmd_arr[0]);
 			if (cmd == NULL)
-			{
 				print_err(count, cmd_arr[0], argv[0]);
-				_putchar('\n');
-			}
 			else
 			{
 				exec_cmd(cmd, cmd_arr);
@@ -51,7 +48,7 @@ int main(int ac, char **argv)
 		}
 		free_list_str(cmd_arr);
 	}
-	return (0);
+	exit(0);
 }
 
 
@@ -130,7 +127,7 @@ char *remove_leading_whitespaces(char *lineptr)
 		free(lineptr);
 		return (NULL);
 	}
-	/* Handle characters */ 
+	/* Handle characters */
 	if (lineptr[0] != ' ' && lineptr[0] != '\n')
 		return (lineptr);
 	/* Handle spaces then characters */

@@ -108,4 +108,5 @@ void print_err(int count, char *cmd, char *arg)
 	_puts(cmd);
 	_puts(": ");
 	_puts("not found");
+	_putchar('\n');
 }
