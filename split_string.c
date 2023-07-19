@@ -67,3 +67,75 @@ void free_list_str(char **list)
 	}
 	free(temp);
 }
+/**
+ * remove_leading_whitespaces - A function that removes leading
+ * whitespaces from character array created from getline.
+ * @lineptr: Character array initalized by getline.
+ * Return: Null on error or the new string.
+ */
+char *remove_leading_whitespaces(char *lineptr)
+{
+	int len = _strlen(lineptr);
+	char *new_lineptr;
+	int j = 0, i = 0;
+	/* Handle when the user press enter without input */
+	if (lineptr[j] == '\n')
+	{
+		free(lineptr);
+		return (NULL);
+	}
+	while (lineptr[j] == ' ')
+	{
+		len--;
+		j++;
+	}
+	/* Handle spaces only */
+	if (lineptr[j] == '\n')
+	{
+		free(lineptr);
+		return (NULL);
+	}
+	/* Handle characters */
+	if (lineptr[0] != ' ' && lineptr[0] != '\n')
+		return (lineptr);
+	/* Handle spaces then characters */
+	if (lineptr[0] != ' ' || lineptr[0] != '\n')
+		return (lineptr);
+	new_lineptr = malloc(sizeof(char) * len + 1);
+	if (new_lineptr == NULL)
+		return (NULL);
+	while (lineptr[j])
+	{
+		new_lineptr[i] = lineptr[j];
+		j++;
+	}
+	new_lineptr[i] = '\0';
+	free(lineptr);
+	return (new_lineptr);
+}
+
+char *_strchr(const char *s, int c)
+{
+	size_t len, i;
+	char copy;
+
+	len = sizeof(s);
+	len = len / sizeof(s[0]);
+	while (s[i])
+	{
+
+	}
+	printf("%ld\n", len);
+	for (i = 0; i < len; i++)
+	{
+		if (copy[i] == c)
+			break;
+	}
+	if (copy[i] == c)
+	{
+		return(copy+i);
+	}
+
+	
+	return (NULL);
+}

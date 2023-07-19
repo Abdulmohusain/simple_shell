@@ -9,7 +9,8 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <string.h>
+char *_strchr(const char *s, int c);
 extern char **environ;
 char *remove_leading_whitespaces(char *lineptr);
 void execute_command(char **argv, char *str, char *cmd);
