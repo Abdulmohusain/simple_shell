@@ -11,7 +11,7 @@
 #include <fcntl.h>
 
 extern char **environ;
-
+char *remove_leading_whitespaces(char *lineptr);
 void execute_command(char **argv, char *str, char *cmd);
 int get_command(char **lineptr, size_t *n);
 char **split_str(char *strng);

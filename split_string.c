@@ -17,7 +17,6 @@ char **split_str(char *strng)
 		return (NULL);
 	/* Make copy of string because it will be destroyed strtok */
 	strng_copy = _strdup(strng);
-
 	/* Tokenize strng */
 	token = strtok(strng, delim);
 	len = 1;
@@ -26,15 +25,14 @@ char **split_str(char *strng)
 		_puts("Error: Could not tokenize string");
 		return (NULL);
 	}
-	/* Get the length of token */
 	while (token != NULL)
 	{
 		token = strtok(NULL, delim);
 		len++;
 	}
-	/* Initialize an array of strings. */
 	arr = malloc(sizeof(char *) * len);
-	/* Tokenize copy of strng_copy */
+	if (!arr)
+		return (NULL);
 	token = strtok(strng_copy, delim);
 	if (token == NULL)
 	{
