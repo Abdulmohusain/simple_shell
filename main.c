@@ -31,7 +31,7 @@ int main(int ac, char **argv)
 				_putchar('\n');
 			break;
 		}
-		if (_strcmp(lineptr, "\n") == 0)
+		if (_strcmp(lineptr, "\n") == 0 || _strlen(lineptr) == 0)
 		{
 			/*_putchar('\n');*/
 			continue;
@@ -43,8 +43,7 @@ int main(int ac, char **argv)
 			if (cmd == NULL)
 			{
 				print_err(count, cmd_arr[0], argv[0]);
-				if (isatty(STDIN_FILENO))
-					_putchar('\n');
+				_putchar('\n');
 			}
 			else
 			{

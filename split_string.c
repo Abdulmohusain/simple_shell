@@ -13,6 +13,8 @@ char **split_str(char *strng)
 	char *token, **arr, *strng_copy;
 	int len, i;
 
+	if (strng == NULL)
+		return (NULL);
 	/* Make copy of string because it will be destroyed strtok */
 	strng_copy = _strdup(strng);
 
