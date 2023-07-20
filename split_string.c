@@ -114,28 +114,18 @@ char *remove_leading_whitespaces(char *lineptr)
 	return (new_lineptr);
 }
 
-char *_strchr(const char *s, int c)
+char *_strchr(char *s, int c)
 {
-	size_t len, i;
-	char copy;
+	int len, i;
 
 	len = sizeof(s);
 	len = len / sizeof(s[0]);
-	while (s[i])
-	{
-
-	}
-	printf("%ld\n", len);
 	for (i = 0; i < len; i++)
 	{
-		if (copy[i] == c)
-			break;
+		if (s[i] == c)
+		{
+			return (&s[i]);
+		}
 	}
-	if (copy[i] == c)
-	{
-		return(copy+i);
-	}
-
-	
 	return (NULL);
 }

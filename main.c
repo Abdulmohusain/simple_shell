@@ -10,7 +10,7 @@
 
 int main(int ac, char **argv)
 {
-	char *lineptr = NULL, *cmd, **cmd_arr, *nulByte;
+	char *lineptr = NULL, *cmd, **cmd_arr, *new_line;
 	size_t n = 0;
 	ssize_t line;
 	int count = 0;
@@ -30,14 +30,13 @@ int main(int ac, char **argv)
 				_putchar('\n');
 			break;
 		}
-		nulByte = _strchr(lineptr, '\n');
-		if (nulByte == NULL)
+		new_line = _strchr(lineptr, '\n');
+		if (new_line == NULL)
 		{
 			free(lineptr);
 			lineptr = NULL;
 			continue;
 		}
-		free(nulByte);
 		lineptr = remove_leading_whitespaces(lineptr);
 		if (lineptr == NULL)
 			continue;
