@@ -10,7 +10,7 @@
 
 int main(int ac, char **argv)
 {
-	char *lineptr = NULL, *cmd, **cmd_arr;
+	char *lineptr = NULL, *cmd, **cmd_arr, *new_line;
 	size_t n = 0;
 	ssize_t line;
 	int count = 0;
@@ -29,6 +29,14 @@ int main(int ac, char **argv)
 			if (isatty(STDIN_FILENO))
 				_putchar('\n');
 			break;
+		}
+		new_line = _strchr(lineptr, '\n');
+		if (new_line == NULL)
+		{
+			free(lineptr);
+			lineptr = NULL;
+			_putchar('\n');
+			continue;
 		}
 		lineptr = remove_leading_whitespaces(lineptr);
 		if (lineptr == NULL)
@@ -97,51 +105,4 @@ void sig_cntrl(int signal)
 {
 	if (signal == SIGINT)
 		_puts("\n$ ");
-}
-
-/**
- * remove_leading_whitespaces - A function that removes leading
- * whitespaces from character array created from getline.
- * @lineptr: Character array initalized by getline.
- * Return: Null on error or the new string.
- */
-char *remove_leading_whitespaces(char *lineptr)
-{
-	int len = _strlen(lineptr);
-	char *new_lineptr;
-	int j = 0, i = 0;
-	/* Handle when the user press enter without input */
-	if (lineptr[j] == '\n')
-	{
-		free(lineptr);
-		return (NULL);
-	}
-	while (lineptr[j] == ' ')
-	{
-		len--;
-		j++;
-	}
-	/* Handle spaces only */
-	if (lineptr[j] == '\n')
-	{
-		free(lineptr);
-		return (NULL);
-	}
-	/* Handle characters */
-	if (lineptr[0] != ' ' && lineptr[0] != '\n')
-		return (lineptr);
-	/* Handle spaces then characters */
-	if (lineptr[0] != ' ' || lineptr[0] != '\n')
-		return (lineptr);
-	new_lineptr = malloc(sizeof(char) * len + 1);
-	if (new_lineptr == NULL)
-		return (NULL);
-	while (lineptr[j])
-	{
-		new_lineptr[i] = lineptr[j];
-		j++;
-	}
-	new_lineptr[i] = '\0';
-	free(lineptr);
-	return (new_lineptr);
 }
