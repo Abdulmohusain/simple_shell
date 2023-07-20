@@ -18,7 +18,7 @@ char **split_str(char *strng)
 	/* Make copy of string because it will be destroyed strtok */
 	strng_copy = _strdup(strng);
 	/* Tokenize strng */
-	token = strtok(strng, delim);
+	token = _strtok(strng, delim);
 	len = 1;
 	if (token == NULL)
 	{
@@ -27,13 +27,13 @@ char **split_str(char *strng)
 	}
 	while (token != NULL)
 	{
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 		len++;
 	}
 	arr = malloc(sizeof(char *) * len);
 	if (!arr)
 		return (NULL);
-	token = strtok(strng_copy, delim);
+	token = _strtok(strng_copy, delim);
 	if (token == NULL)
 	{
 		_puts("Error: Could not tokenize string");
@@ -43,7 +43,7 @@ char **split_str(char *strng)
 	for (i = 0; token != NULL; i++)
 	{
 		arr[i] = _strdup(token);
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	free(strng_copy);
 	arr[i] = NULL;
@@ -113,7 +113,13 @@ char *remove_leading_whitespaces(char *lineptr)
 	free(lineptr);
 	return (new_lineptr);
 }
-
+/**
+ * _strchr - A function returns a pointer to the first occurrence
+ * of the character c in the string s.
+ * @s: The string.
+ * @c: the character.
+ * Return: Pointer to the first occurrence or NULL if not found.
+ */
 char *_strchr(char *s, int c)
 {
 	int len, i;
