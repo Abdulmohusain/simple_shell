@@ -10,7 +10,7 @@
 
 int main(int ac, char **argv)
 {
-	char *lineptr = NULL, *cmd, **cmd_arr, *new_line;
+	char *lineptr = NULL, **cmd_arr, *new_line;
 	size_t n = 0;
 	ssize_t line;
 	int count = 0;
@@ -42,18 +42,7 @@ int main(int ac, char **argv)
 		if (lineptr == NULL)
 			continue;
 		cmd_arr = split_str(lineptr);
-		if (check_builtin(lineptr, cmd_arr) == 0)
-		{
-			cmd = build_path(cmd_arr[0]);
-			if (cmd == NULL)
-				print_err(count, cmd_arr[0], argv[0]);
-			else
-			{
-				exec_cmd(cmd, cmd_arr);
-				if (cmd != cmd_arr[0])
-					free(cmd);
-			}
-		}
+		processor(count, cmd_arr, argv[0], lineptr);
 		free_list_str(cmd_arr);
 	}
 	exit(0);
@@ -105,4 +94,31 @@ void sig_cntrl(int signal)
 {
 	if (signal == SIGINT)
 		_puts("\n$ ");
+}
+
+/**
+ * processor - process commands
+ * @count: cont
+ * @cmd_arr: command array
+ * @arg: argument 0
+ * @lineptr: lineptr
+ *
+ * Return: void
+ */
+
+void processor(int count, char **cmd_arr, char *arg, char *lineptr)
+{
+	char *cmd;
+	if (check_builtin(lineptr, cmd_arr) == 0)
+	{
+		cmd = build_path(cmd_arr[0]);
+		if (cmd == NULL)
+			print_err(count, cmd_arr[0], arg);
+		else
+		{
+			exec_cmd(cmd, cmd_arr);
+			if (cmd != cmd_arr[0])
+				free(cmd);
+		}
+	}
 }

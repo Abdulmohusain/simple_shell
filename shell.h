@@ -35,6 +35,7 @@ char *_getenv(char *name);
 char *build_path(char *cmd);
 int exec_cmd(char *cmd, char **argv);
 void sig_cntrl(int signal);
+void processor(int count, char **cmd_arr, char *arg, char *lineptr);
 
 /* Builtin command */
 int check_builtin(char *cmd, char **argv);
