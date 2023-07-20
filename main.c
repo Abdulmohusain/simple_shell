@@ -35,6 +35,7 @@ int main(int ac, char **argv)
 		{
 			free(lineptr);
 			lineptr = NULL;
+			_putchar('\n');
 			continue;
 		}
 		lineptr = remove_leading_whitespaces(lineptr);
