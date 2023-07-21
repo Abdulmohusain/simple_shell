@@ -10,10 +10,10 @@
 
 int main(int ac, char **argv)
 {
-	char *lineptr = NULL, *cmd, **cmd_arr;
+	char *lineptr = NULL, **cmd_arr;
 	size_t n = 0;
 	ssize_t line;
-	int count = 0;
+	int count = 0, k;
 
 	(void)ac;
 	while (1)
@@ -30,30 +30,16 @@ int main(int ac, char **argv)
 				_putchar('\n');
 			break;
 		}
-		/*new_line = _strchr(lineptr, '\n');
-		if (new_line == NULL)
-		{
-			free(lineptr);
-			lineptr = NULL;
-			_putchar('\n');
-			continue;
-		}*/
+		/* strchr code goes here */
 		lineptr = remove_leading_whitespaces(lineptr);
 		if (lineptr == NULL)
 			continue;
 		cmd_arr = split_str(lineptr);
-		if (check_builtin(lineptr, cmd_arr) == 0)
-		{
-			cmd = build_path(cmd_arr[0]);
-			if (cmd == NULL)
-				print_err(count, cmd_arr[0], argv[0]);
-			else
-			{
-				exec_cmd(cmd, cmd_arr);
-				if (cmd != cmd_arr[0])
-					free(cmd);
-			}
-		}
+		k = check_builtin(lineptr, cmd_arr);
+		if (k == 0)
+			build_path_and_execute(cmd_arr, argv, count);
+		else if (k == -1)
+			print_err(count, cmd_arr[0], argv[0]);
 		free_list_str(cmd_arr);
 	}
 	exit(0);

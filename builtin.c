@@ -42,7 +42,7 @@ char *_getenv(char *name)
 
 int check_builtin(char *cmd, char **argv)
 {
-	int i = 0;
+	int i = 0, j = 0;
 	builtin b_arr[] = {
 		{"exit", exit_shell},
 		{"env", print_env},
@@ -55,7 +55,9 @@ int check_builtin(char *cmd, char **argv)
 	{
 		if (_strcmp(b_arr[i].name, argv[0]) == 0)
 		{
-			b_arr[i].f(cmd, argv);
+			j = b_arr[i].f(cmd, argv);
+			if (j == -1)
+				return (-1);
 			return (1);
 		}
 		i++;
@@ -68,16 +70,28 @@ int check_builtin(char *cmd, char **argv)
  * @cmd: command
  * @argv: argument variable
  *
- * Return: int
+ * Return: does not return on sucess, -1 on failure.
  */
 
 int exit_shell(char *cmd, char **argv)
 {
+	int status;
+
 	if (argv[1] == NULL)
 	{
 		free_list_str(argv);
 		free(cmd);
 		exit(0);
+	}
+	if (argv[1] != NULL && argv[2] == NULL)
+	{
+
+		status = _atoi(argv[1]);
+		if (status == 0)
+			return (-1);
+		free_list_str(argv);
+		free(cmd);
+		exit(status);
 	}
 	return (1);
 }

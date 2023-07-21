@@ -8,7 +8,7 @@
  */
 char *_strtok(char *str, const char *delim)
 {
-	static char *next = NULL;
+	static char *next;
 	char *current;
 	int i = 0, n;
 
@@ -25,7 +25,7 @@ char *_strtok(char *str, const char *delim)
 	}
 	current = &current[i];
 	i = 0;
-	while(current[i])
+	while (current[i])
 	{
 		n = check_delim(current[i], delim);
 		if (n == 1)
@@ -65,4 +65,26 @@ int check_delim(char a, const char *delim)
 	}
 	return (-1);
 
+}
+/**
+ * build_path_and_execute - A funtion that builds path
+ * then execute the command.
+ * @cmd_arr: array of strings.
+ * @argv: argument vector
+ * @count: shell counter.
+ */
+void build_path_and_execute(char **cmd_arr, char **argv, int count)
+{
+	char *cmd;
+
+
+	cmd = build_path(cmd_arr[0]);
+	if (cmd == NULL)
+		print_err(count, cmd_arr[0], argv[0]);
+	else
+	{
+		exec_cmd(cmd, cmd_arr);
+		if (cmd != cmd_arr[0])
+			free(cmd);
+	}
 }

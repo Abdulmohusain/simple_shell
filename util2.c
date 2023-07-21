@@ -70,6 +70,9 @@ int _atoi(const char *nstr)
 		if (nstr[i] >= '0' && nstr[i] <= '9')
 		{
 			count =  count * 10 + (nstr[i] - '0');
+		} else
+		{
+			return (0);
 		}
 		i++;
 	}

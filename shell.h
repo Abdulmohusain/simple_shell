@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+
+void build_path_and_execute(char **cmd_arr, char **argv, int count);
 int check_delim(char a, const char *delim);
 char *_strtok(char *str, const char *delim);
 char *_strchr(char *s, int c);
