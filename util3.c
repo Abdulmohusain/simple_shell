@@ -10,7 +10,7 @@ char *_strtok(char *str, const char *delim)
 {
 	static char *next = NULL;
 	char *current;
-	int i = 0, j = 1, n;
+	int i = 0, n;
 
 	if (str != NULL)
 		current = str;
@@ -18,30 +18,28 @@ char *_strtok(char *str, const char *delim)
 		return (NULL);
 	if (str == NULL && next != NULL)
 		current = next;
+
+	while (check_delim(current[i], delim) == 1)
+	{
+		i++;
+	}
+	current = &current[i];
+	i = 0;
 	while(current[i])
 	{
 		n = check_delim(current[i], delim);
 		if (n == 1)
 		{
 			current[i] = '\0';
-			while (current[i + j])
+			if (check_delim(current[i + 1], delim) == 1)
 			{
-				if (check_delim(current[i + j], delim) == 1)
-				{
-					current[i + j] = '\0';
-					j++;
-					continue;
-				} else
-					break;
-			}
-			if (current[0] == '\0')
-			{
-				current = &current[i + j];
+				i++;
 				continue;
+			} else
+			{
+				next = &current[i + 1];
+				return (current);
 			}
-
-			next = &current[i + j];
-			return (current);
 		}
 	i++;
 	}
@@ -53,7 +51,7 @@ char *_strtok(char *str, const char *delim)
  * delimiter.
  * @a: The character.
  * @delim: The delimiting characters.
- * Return: 1 if character is found or -1 if not found.
+ * Return: 1 if delimiting character is found or -1 if not found.
  */
 int check_delim(char a, const char *delim)
 {
