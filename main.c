@@ -10,11 +10,7 @@
 
 int main(int ac, char **argv)
 {
-<<<<<<< HEAD
-	char *lineptr = NULL, **cmd_arr;
-=======
 	char *lineptr = NULL, **cmd_arr/* *new_line */;
->>>>>>> 9a13a3f0f9121baa90c07fbbcb9ab3896d861388
 	size_t n = 0;
 	ssize_t line;
 	int count = 0, k;
@@ -34,31 +30,16 @@ int main(int ac, char **argv)
 				_putchar('\n');
 			break;
 		}
-<<<<<<< HEAD
 		/* strchr code goes here */
-=======
-		/*new_line = _strchr(lineptr, '\n');
-		if (new_line == NULL)
-		{
-			free(lineptr);
-			lineptr = NULL;
-			_putchar('\n');
-			continue;
-		}*/
->>>>>>> 9a13a3f0f9121baa90c07fbbcb9ab3896d861388
 		lineptr = remove_leading_whitespaces(lineptr);
 		if (lineptr == NULL)
 			continue;
 		cmd_arr = split_str(lineptr);
-<<<<<<< HEAD
 		k = check_builtin(lineptr, cmd_arr);
 		if (k == 0)
 			build_path_and_execute(cmd_arr, argv, count);
 		else if (k == -1)
 			print_err(count, cmd_arr[0], argv[0]);
-=======
-		processor(count, cmd_arr, argv[0], lineptr);
->>>>>>> 9a13a3f0f9121baa90c07fbbcb9ab3896d861388
 		free_list_str(cmd_arr);
 	}
 	exit(0);
