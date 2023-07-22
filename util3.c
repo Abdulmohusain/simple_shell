@@ -88,3 +88,45 @@ void build_path_and_execute(char **cmd_arr, char **argv, int count)
 			free(cmd);
 	}
 }
+
+/**
+ * _setenv - A function that add an enviromental variable.
+ * @name: name of env variable
+ * @value: the corresponding value
+ * Return: 0 on success, or -1 on failure.
+ */
+int _setenv(const char *name, const char *value, int overwrite)
+{
+	int i = 0, found = 0;
+	char *env_copy, *token;
+	char *full_env = malloc(_strlen(name) * sizeof(char) + (_strlen(value) * sizeof(char)) + 2);
+
+	if (full_env == NULL)
+		return (-1);
+	_strcpy(full_env, name);
+	_strcat(full_env, "=");
+	_strcat(full_env, value);
+	while (environ[i])
+	{
+		env_copy = _strdup(environ[i]);
+		token = _strtok(env_copy, "=");
+		if (_strcmp(token, name) == 0)
+		{
+			found = 1;
+			free(env_copy);
+			break;
+		}
+		free(env_copy);
+		i++;
+	}
+	if (found == 1 && overwrite != 0)
+	{
+		environ[i] = full_env;
+	} else if (found == 0)
+	{
+		environ[i] = full_env;
+		environ[i + 1] = NULL;
+	}
+	return (0);
+
+}

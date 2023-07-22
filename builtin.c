@@ -42,25 +42,21 @@ char *_getenv(char *name)
 
 int check_builtin(char *cmd, char **argv)
 {
-	int i = 0, j = 0;
-	builtin b_arr[] = {
-		{"exit", exit_shell},
-		{"env", print_env},
-		{NULL, NULL}
-	};
-
-	if (argv[0] == NULL)
-		return (0);
-	while (b_arr[i].name != NULL)
+	if (_strcmp("exit", argv[0]) == 0)
 	{
-		if (_strcmp(b_arr[i].name, argv[0]) == 0)
-		{
-			j = b_arr[i].f(cmd, argv);
-			if (j == -1)
-				return (-1);
-			return (1);
-		}
-		i++;
+		free(cmd);
+		exit_shell(argv);
+		return (1);
+	}
+	if (_strcmp("env", argv[0]) == 0)
+	{
+		print_env();
+		return (1);
+	}
+	if (_strcmp("setenv", argv[0]) == 0)
+	{
+		_setenv(argv[1], argv[2], 0);
+		return (1);
 	}
 	return (0);
 }
@@ -73,14 +69,13 @@ int check_builtin(char *cmd, char **argv)
  * Return: does not return on sucess, -1 on failure.
  */
 
-int exit_shell(char *cmd, char **argv)
+int exit_shell(char **argv)
 {
 	int status;
 
 	if (argv[1] == NULL)
 	{
 		free_list_str(argv);
-		free(cmd);
 		exit(0);
 	}
 	if (argv[1] != NULL && argv[2] == NULL)
@@ -90,7 +85,6 @@ int exit_shell(char *cmd, char **argv)
 		if (status == 0)
 			return (-1);
 		free_list_str(argv);
-		free(cmd);
 		exit(status);
 	}
 	return (1);
@@ -104,11 +98,10 @@ int exit_shell(char *cmd, char **argv)
  * Return: 0
  */
 
-int print_env(char *cmd, char **argv)
+int print_env()
 {
 	int i = 0, len, j;
 
-	(void)cmd, (void)argv;
 	while (environ[i] != NULL)
 	{
 		len = _strlen(environ[i]);

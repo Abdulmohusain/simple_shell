@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-
+int _setenv(const char *name, const char *value, int overwrite);
 void build_path_and_execute(char **cmd_arr, char **argv, int count);
 int check_delim(char a, const char *delim);
 char *_strtok(char *str, const char *delim);
@@ -28,7 +28,7 @@ int _strlen(const char *s);
 void _puts(char *s);
 char *_strcpy(char *dest, const char *src);
 char *_strdup(const char *src);
-char *_strcat(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 int _strcmp(const char *s1, const char *s2);
 int _atoi(const char *nstr);
 void print_num(int num);
@@ -42,8 +42,8 @@ void sig_cntrl(int signal);
 
 /* Builtin command */
 int check_builtin(char *cmd, char **argv);
-int exit_shell(char *cmd, char **argv);
-int print_env(char *cmd, char **argv);
+int exit_shell(char **argv);
+int print_env();
 
 /**
  * struct built_in - builtin structure
