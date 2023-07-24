@@ -35,7 +35,8 @@ int main(int ac, char **argv)
 		if (lineptr == NULL)
 			continue;
 		cmd_arr = split_str(lineptr);
-		k = check_builtin(lineptr, cmd_arr);
+		/*      */
+		k = check_builtin(lineptr, cmd_arr, count, argv[0]);
 		if (k == 0)
 			build_path_and_execute(cmd_arr, argv, count);
 		else if (k == -1)
@@ -93,29 +94,3 @@ void sig_cntrl(int signal)
 		_puts("\n$ ");
 }
 
-/**
- * processor - process commands
- * @count: cont
- * @cmd_arr: command array
- * @arg: argument 0
- * @lineptr: lineptr
- *
- * Return: void
- */
-
-void processor(int count, char **cmd_arr, char *arg, char *lineptr)
-{
-	char *cmd;
-	if (check_builtin(lineptr, cmd_arr) == 0)
-	{
-		cmd = build_path(cmd_arr[0]);
-		if (cmd == NULL)
-			print_err(count, cmd_arr[0], arg);
-		else
-		{
-			exec_cmd(cmd, cmd_arr);
-			if (cmd != cmd_arr[0])
-				free(cmd);
-		}
-	}
-}

@@ -40,12 +40,22 @@ char *_getenv(char *name)
  * Return: int
  */
 
-int check_builtin(char *cmd, char **argv)
+int check_builtin(char *cmd, char **argv, int count, char *executable_name)
 {
 	if (_strcmp("exit", argv[0]) == 0)
 	{
-		free(cmd);
-		exit_shell(argv);
+		/**      */
+		if (argv[1] == NULL)
+			exit_shell(cmd, argv);
+		if (argv[1] != NULL)
+		{
+			if (_atoi(argv[1]) == 0)
+				print_err(count, argv[0], executable_name);
+			if (_atoi(argv[1]) < 0)
+				print_err(count, argv[0], executable_name);
+			if (_atoi(argv[1]) > 0)
+				exit_shell(cmd, argv);
+		}
 		return (1);
 	}
 	if (_strcmp("env", argv[0]) == 0)
@@ -55,7 +65,14 @@ int check_builtin(char *cmd, char **argv)
 	}
 	if (_strcmp("setenv", argv[0]) == 0)
 	{
-		_setenv(argv[1], argv[2], 0);
+		if (argv[2] != NULL)
+			_setenv(argv[1], argv[2], 0);
+		return (1);
+	}
+	if (_strcmp("unsetenv", argv[0]) == 0)
+	{
+		if (argv[1] != NULL)
+			_unsetenv(argv[1]);
 		return (1);
 	}
 	return (0);
@@ -69,13 +86,14 @@ int check_builtin(char *cmd, char **argv)
  * Return: does not return on sucess, -1 on failure.
  */
 
-int exit_shell(char **argv)
+int exit_shell(char *cmd, char **argv)
 {
 	int status;
 
 	if (argv[1] == NULL)
 	{
 		free_list_str(argv);
+		free(cmd);
 		exit(0);
 	}
 	if (argv[1] != NULL && argv[2] == NULL)
@@ -85,6 +103,7 @@ int exit_shell(char **argv)
 		if (status == 0)
 			return (-1);
 		free_list_str(argv);
+		free(cmd);
 		exit(status);
 	}
 	return (1);
@@ -98,7 +117,7 @@ int exit_shell(char **argv)
  * Return: 0
  */
 
-int print_env()
+int print_env(void)
 {
 	int i = 0, len, j;
 

@@ -93,14 +93,18 @@ void build_path_and_execute(char **cmd_arr, char **argv, int count)
  * _setenv - A function that add an enviromental variable.
  * @name: name of env variable
  * @value: the corresponding value
+ * @overwrite: set to non zero value if you want to overwrite
  * Return: 0 on success, or -1 on failure.
  */
 int _setenv(const char *name, const char *value, int overwrite)
 {
-	int i = 0, found = 0;
+	int i = 0, found = 0, n, v;
 	char *env_copy, *token;
-	char *full_env = malloc(_strlen(name) * sizeof(char) + (_strlen(value) * sizeof(char)) + 2);
+	char *full_env;
 
+	n = _strlen(name);
+	v = _strlen(value);
+	full_env = malloc(n * sizeof(char) + v * sizeof(char) + 2);
 	if (full_env == NULL)
 		return (-1);
 	_strcpy(full_env, name);

@@ -10,7 +10,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int _setenv(const char *name, const char *value, int overwrite);
 void build_path_and_execute(char **cmd_arr, char **argv, int count);
 int check_delim(char a, const char *delim);
 char *_strtok(char *str, const char *delim);
@@ -42,9 +41,12 @@ void sig_cntrl(int signal);
 void processor(int count, char **cmd_arr, char *arg, char *lineptr);
 
 /* Builtin command */
-int check_builtin(char *cmd, char **argv);
-int exit_shell(char **argv);
-int print_env();
+int _unsetenv(const char *name);
+int _setenv(const char *name, const char *value, int overwrite);
+/*                  */
+int check_builtin(char *cmd, char **argv, int count, char *executable_name);
+int exit_shell(char *cmd, char **argv);
+int print_env(void);
 
 /**
  * struct built_in - builtin structure
