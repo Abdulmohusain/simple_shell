@@ -130,3 +130,15 @@ int _setenv(const char *name, const char *value, int overwrite)
 	return (0);
 
 }
+
+/**
+ * _puterr - prints to standard error
+ * @c: character to write to stderr
+ * 
+ * Return: int
+ */
+
+int _puterr(char c)
+{
+	return (write(2, &c, 1));
+}

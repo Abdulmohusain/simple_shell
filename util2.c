@@ -90,7 +90,7 @@ void print_num(int num)
 {
 	if (num / 10 != 0)
 		print_num(num / 10);
-	_putchar(num % 10 + '0');
+	_puterr(num % 10 + '0');
 }
 
 /**
@@ -104,12 +104,12 @@ void print_num(int num)
 
 void print_err(int count, char *cmd, char *arg)
 {
-	_puts(arg);
-	_puts(": ");
+	_puts_err(arg);
+	_puts_err(": ");
 	print_num(count);
-	_puts(": ");
-	_puts(cmd);
-	_puts(": ");
-	_puts("not found");
-	_putchar('\n');
+	_puts_err(": ");
+	_puts_err(cmd);
+	_puts_err(": ");
+	_puts_err("not found");
+	_puterr('\n');
 }
