@@ -31,6 +31,8 @@ char *_strcat(char *dest, const char *src);
 int _strcmp(const char *s1, const char *s2);
 int _atoi(const char *nstr);
 void print_num(int num);
+int _puterr(char c);
+void _puts_err(char *s);
 
 /* Shell Command Functions */
 void print_err(int count, char *cmd, char *arg);

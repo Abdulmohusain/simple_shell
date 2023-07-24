@@ -80,7 +80,11 @@ void build_path_and_execute(char **cmd_arr, char **argv, int count)
 
 	cmd = build_path(cmd_arr[0]);
 	if (cmd == NULL)
+	{
 		print_err(count, cmd_arr[0], argv[0]);
+		if (!isatty(STDIN_FILENO))
+			exit(127);
+	}
 	else
 	{
 		exec_cmd(cmd, cmd_arr);
@@ -133,4 +137,16 @@ int _setenv(const char *name, const char *value, int overwrite)
 	}
 	return (0);
 
+}
+
+/**
+ * _puterr - prints to standard error
+ * @c: character to write to stderr
+ * 
+ * Return: int
+ */
+
+int _puterr(char c)
+{
+	return (write(2, &c, 1));
 }

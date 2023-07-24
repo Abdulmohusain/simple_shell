@@ -70,7 +70,7 @@ int exec_cmd(char *cmd, char **argv)
 	{
 		if (execve(cmd, argv, environ) == -1)
 		{
-			perror("hsh: ");
+			perror("hsh");
 			return (1);
 		}
 	}
