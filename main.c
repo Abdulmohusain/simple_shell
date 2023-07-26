@@ -15,6 +15,7 @@ int main(int ac, char **argv)
 	ssize_t line;
 	int count = 0, k;
 
+	err_no = 0;
 	(void)ac;
 	while (1)
 	{
@@ -43,7 +44,7 @@ int main(int ac, char **argv)
 			print_err(count, cmd_arr[0], argv[0]);
 		free_list_str(cmd_arr);
 	}
-	exit(0);
+	exit(err_no);
 }
 
 
@@ -76,7 +77,9 @@ int exec_cmd(char *cmd, char **argv)
 	}
 	else
 	{
-		wait(&status);
+		waitpid(child_pid, &status, 0);
+		if (WIFEXITED(status))
+			err_no = WEXITSTATUS(status);
 	}
 	return (0);
 }
@@ -93,4 +96,3 @@ void sig_cntrl(int signal)
 	if (signal == SIGINT)
 		_puts("\n$ ");
 }
-

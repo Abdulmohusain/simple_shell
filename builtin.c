@@ -62,17 +62,20 @@ int check_builtin(char *cmd, char **argv, int count, char *executable_name)
 	}
 	if (_strcmp("env", argv[0]) == 0)
 	{
+		err_no = 0;
 		print_env();
 		return (1);
 	}
 	if (_strcmp("setenv", argv[0]) == 0)
 	{
+		err_no = 0;
 		if (argv[2] != NULL)
 			_setenv(argv[1], argv[2], 0);
 		return (1);
 	}
 	if (_strcmp("unsetenv", argv[0]) == 0)
 	{
+		err_no = 0;
 		if (argv[1] != NULL)
 			_unsetenv(argv[1]);
 		return (1);
@@ -96,7 +99,7 @@ int exit_shell(char *cmd, char **argv)
 	{
 		free_list_str(argv);
 		free(cmd);
-		exit(0);
+		exit(err_no);
 	}
 	if (argv[1] != NULL && argv[2] == NULL)
 	{
@@ -108,7 +111,7 @@ int exit_shell(char *cmd, char **argv)
 		free(cmd);
 		exit(status);
 	}
-	return (1);
+	return (0);
 }
 
 /**

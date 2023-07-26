@@ -112,4 +112,5 @@ void print_err(int count, char *cmd, char *arg)
 	_puts_err(": ");
 	_puts_err("not found");
 	_puterr('\n');
+	err_no = 127;
 }

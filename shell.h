@@ -15,6 +15,7 @@ int check_delim(char a, const char *delim);
 char *_strtok(char *str, const char *delim);
 char *_strchr(char *s, int c);
 extern char **environ;
+int err_no;
 char *remove_leading_whitespaces(char *lineptr);
 void execute_command(char **argv, char *str, char *cmd);
 int get_command(char **lineptr, size_t *n);
