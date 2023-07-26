@@ -36,6 +36,8 @@ char *_getenv(char *name)
  * check_builtin -  check if a command is a builtin
  * @cmd: the command
  * @argv: array of arguments
+ * @count: count
+ * @executable_name: exec
  *
  * Return: int
  */
@@ -111,8 +113,6 @@ int exit_shell(char *cmd, char **argv)
 
 /**
  * print_env - prints environmental variable
- * @cmd: command
- * @argv: argument variable
  *
  * Return: 0
  */

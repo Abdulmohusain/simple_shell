@@ -3,6 +3,8 @@
  * get_command - A function that gets command from standard input.
  * @lineptr: A buffer containing user input.
  * @n: Size of lineptr
+ *
+ * Return: int
  */
 int get_command(char **lineptr, size_t *n)
 {

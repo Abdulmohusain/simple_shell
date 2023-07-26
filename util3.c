@@ -142,7 +142,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 /**
  * _puterr - prints to standard error
  * @c: character to write to stderr
- * 
+ *
  * Return: int
  */
 
