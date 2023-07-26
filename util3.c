@@ -72,8 +72,11 @@ int check_delim(char a, const char *delim)
  * @cmd_arr: array of strings.
  * @argv: argument vector
  * @count: shell counter.
+ * @ptr: lineptr
+ *
+ * Retrun: void
  */
-void build_path_and_execute(char **cmd_arr, char **argv, int count)
+void build_path_and_execute(char **cmd_arr, char **argv, int count, char *ptr)
 {
 	char *cmd;
 
@@ -83,7 +86,11 @@ void build_path_and_execute(char **cmd_arr, char **argv, int count)
 	{
 		print_err(count, cmd_arr[0], argv[0]);
 		if (!isatty(STDIN_FILENO))
+		{
+			free(ptr);
+			free_list_str(cmd_arr);
 			exit(127);
+		}
 	}
 	else
 	{

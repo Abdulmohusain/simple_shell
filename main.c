@@ -38,7 +38,7 @@ int main(int ac, char **argv)
 		/*      */
 		k = check_builtin(lineptr, cmd_arr, count, argv[0]);
 		if (k == 0)
-			build_path_and_execute(cmd_arr, argv, count);
+			build_path_and_execute(cmd_arr, argv, count, lineptr);
 		else if (k == -1)
 			print_err(count, cmd_arr[0], argv[0]);
 		free_list_str(cmd_arr);
